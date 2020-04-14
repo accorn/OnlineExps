@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex">
+    <title>Experiment</title>
+    <link href="static/css/jspsych.css" rel="stylesheet" type="text/css"></link> # Here we call in the CSS file
+</head>
+
+<body>
+    <script src="static/js/jspsych-6.0.1/jspsych.js"></script> # All Scripts and libraries are called here.
+    <script src="static/js/jspsych-6.0.1/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="static/js/jspsych-6.0.1/plugins/jspsych-survey-multi-select.js"></script>
+    <script src="static/js/jspsych-6.0.1/plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="static/js/jspsych-6.0.1/plugins/jspsych-survey-text.js"></script>
+    <script src="static/js/jspsych-6.0.1/plugins/jspsych-survey-likert.js"></script>
+    <script src="static/js/jspsych-6.0.1/plugins/jspsych-fullscreen.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="static/lib/jquery-min.js" type="text/javascript"></script>
+    <script src="static/lib/underscore-min.js" type="text/javascript"></script>
+    <script src="static/lib/backbone-min.js" type="text/javascript"></script>
+    <script src='expTest.js'></script>
+    <noscript>
+        <h1>Warning: Javascript seems to be disabled</h1>
+        <p>This website requires that Javascript be enabled on your browser.</p>
+        <p>Instructions for enabling Javascript in your browser can be found
+        <a href="http://support.google.com/bin/answer.py?hl=en&answer=23852">here</a><p>
+    </noscript>
+<script>
+        jsPsych.init({ // Begins the experiment via timeline call.
+        	timeline: timeline, //timeline is named in the experiment.js file.
+        	on_finish: function(data){ //there is a better implementation that adds everything to a json object instead
+          		var SaveNames = ["reward","choice","trialType","rt"]
+          		var Reward = jsPsych.data.get().select('reward').values;
+          		var dataMat = SaveNames.concat(Reward);
+          		var resultJson = JSON.stringify(dataMat);
+        	}
+	})
+</script>
+</body>
+</html>
